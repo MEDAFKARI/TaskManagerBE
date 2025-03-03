@@ -2,6 +2,7 @@ package com.med.TaskManager.controller;
 
 import com.med.TaskManager.dto.task.CreateTaskDTO;
 import com.med.TaskManager.dto.task.TaskDTO;
+import com.med.TaskManager.dto.task.UpdateTaskDTO;
 import com.med.TaskManager.exception.TaskAlreadyExistsException;
 import com.med.TaskManager.exception.TaskNotFoundException;
 import com.med.TaskManager.service.TaskService;
@@ -44,6 +45,17 @@ public class TaskController {
                 HttpStatus.OK
         );
     }
+
+
+
+//    @PutMapping("/{id}")
+//    public ResponseEntity<TaskDTO> updateTask(@PathVariable Long id, @RequestBody  UpdateTaskDTO updateTaskDTO)
+//            throws TaskNotFoundException {
+//        return new ResponseEntity<>(
+//                taskService.updateTask(id, updateTaskDTO),
+//                HttpStatus.OK
+//        );
+//    }
 
 
 

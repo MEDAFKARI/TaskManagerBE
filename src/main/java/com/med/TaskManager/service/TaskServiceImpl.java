@@ -4,6 +4,7 @@ import com.med.TaskManager.dao.entity.Task;
 import com.med.TaskManager.dao.repository.TaskRepository;
 import com.med.TaskManager.dto.task.CreateTaskDTO;
 import com.med.TaskManager.dto.task.TaskDTO;
+import com.med.TaskManager.dto.task.UpdateTaskDTO;
 import com.med.TaskManager.exception.TaskAlreadyExistsException;
 import com.med.TaskManager.exception.TaskNotFoundException;
 import com.med.TaskManager.util.TaskMapper;
@@ -27,7 +28,7 @@ public class TaskServiceImpl implements TaskService{
     public TaskDTO createTask(CreateTaskDTO task) throws TaskAlreadyExistsException {
         Task taskEntity = taskMapper.mapToTask(task);
         if (taskRepository.findByName(task.getName()).isPresent()) {
-            throw new TaskAlreadyExistsException("Task with the same name already exists");
+            throw new TaskAlreadyExistsException("Task already exists");
         }
         System.out.println(taskEntity);
         taskEntity.setDone(false);
@@ -52,5 +53,21 @@ public class TaskServiceImpl implements TaskService{
         task.get().setDone(true);
         Task endedTask=taskRepository.save(task.get());
         return taskMapper.mapToTaskDTO(endedTask);
+    }
+
+    @Override
+    public TaskDTO updateTask(Long Id, UpdateTaskDTO task) throws TaskNotFoundException {
+        Optional<Task> updatingTask= taskRepository.findById(Id);
+        if (!updatingTask.isPresent()) {
+            throw new TaskNotFoundException("Task not found : " + Id);
+        }
+        System.out.println("task DTO : "+task);
+        Task UpTask = taskMapper.mapToTask(task);
+        System.out.println("task  : "+ UpTask);
+        UpTask.setId(Id);
+        Task savedTask=taskRepository.save(UpTask);
+        System.out.println("Saved Task  : "+ UpTask);
+
+        return taskMapper.mapToTaskDTO(savedTask);
     }
 }

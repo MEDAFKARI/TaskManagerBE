@@ -1,6 +1,7 @@
 package com.med.TaskManager.dao.entity;
 
 
+import com.med.TaskManager.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,6 +18,7 @@ import java.util.List;
 @Builder
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
     private String password;
@@ -25,4 +27,6 @@ public class User {
     private Team team;
     @OneToOne
     private Task affectedTask;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }

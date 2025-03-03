@@ -1,12 +1,8 @@
 package com.med.TaskManager.dao.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.List;
 
@@ -16,9 +12,14 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class Team {
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    @NonNull
     private String name;
+    @NonNull
     private String goal;
+    @NonNull
     private Long team_manager;
     @OneToMany(mappedBy = "team")
     private List<User> members;

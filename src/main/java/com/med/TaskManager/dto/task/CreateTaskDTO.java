@@ -1,11 +1,13 @@
-package com.med.TaskManager.dto;
+package com.med.TaskManager.dto.task;
 
+import com.med.TaskManager.enums.Flag;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 
 @Builder
@@ -15,7 +17,8 @@ import java.time.LocalDateTime;
 public class CreateTaskDTO {
     private String name;
     private String description;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    private Date startDate;
+    private Date endDate;
+    private Flag flag;
     private Long userId;
 }

@@ -22,10 +22,15 @@ public class Task {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private Boolean done;
+    private Boolean affected;
     @Enumerated(EnumType.STRING)
     private Flag flag;
     @OneToOne
     private User user;
     @ManyToOne
     private Team team;
+
+
+
+
 }

@@ -1,4 +1,4 @@
-package com.med.TaskManager.dto;
+package com.med.TaskManager.dto.task;
 
 
 import com.med.TaskManager.enums.Flag;
@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Data
 public class TaskDTO {
+    private String id;
     private String name;
     private String description;
     private LocalDateTime startTime;

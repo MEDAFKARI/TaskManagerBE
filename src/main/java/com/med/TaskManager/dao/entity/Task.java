@@ -24,6 +24,8 @@ public class Task {
     private Boolean done;
     @Enumerated(EnumType.STRING)
     private Flag flag;
-    @ManyToOne
+    @OneToOne
     private User user;
+    @ManyToOne
+    private Team team;
 }
